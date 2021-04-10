@@ -47,9 +47,12 @@ module.exports = gql`
   type Query {
     getActors: [Actor]
     getActor(id: String): Actor
+    getDirectors: [Director]
+    getDirector(id: String): Director
   }
 
   type Mutation {
     createActor(name: String!): Actor
+    createDirector(name: String!): Director
   }
 `;

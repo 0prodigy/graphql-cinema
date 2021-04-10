@@ -1,7 +1,10 @@
 const mongoose = require("mongoose");
 
 const DirectorSchema = new mongoose.Schema({
-  _id: { type: mongoose.Schema.Types.ObjectId },
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: mongoose.Types.ObjectId(),
+  },
   name: { type: String },
   movies: [{ type: mongoose.Schema.Types.ObjectId, ref: "Movie" }],
   rating: { type: Number },
