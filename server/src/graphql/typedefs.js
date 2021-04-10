@@ -1,50 +1,50 @@
 const { gql } = require("apollo-server-express");
 
 module.exports = gql`
+  type Movie {
+    _id: ID!
+    name: String!
+    actor: Actor!
+    director: Director!
+    rating: Float
+  }
 
-    type Movie {
-        _id: Number!
-        name: String!
-        actor: Actor!
-        director:Director!
-        rating:Number
-    }
+  type Actor {
+    _id: ID!
+    name: String!
+    movies: [Movie]
+    rating: Float
+  }
 
-    type Actor {
-        _id:Number!
-        name:String!
-        movies:[Movie]
-        rating:Number
-    }
+  type Director {
+    _id: ID!
+    name: String!
+    movies: [Movie]
+    rating: Float
+  }
 
-    type Director {
-        _id:Number!
-        name:String!
-        movies:[Movie]
-        rating:Number
-    }
+  type Screen {
+    _id: ID!
+    name: String!
+    show: [Show]
+  }
 
-    type Screen {
-        _id:Number!
-        name:String!
-        show: [
-            Show
-        ]
-    }
+  type Show {
+    _id: ID!
+    time: String
+    movie_id: ID
+    ticket_price: Float
+  }
 
-    type Show {
-        _id:Number! 
-        time:String
-        movie_id:Movie._id
-        ticket_price:Number
-    }
+  type Seat {
+    _id: ID!
+    id: Int!
+    scree_id: ID!
+    is_booked: Boolean!
+    show_id: ID!
+  }
 
-    type Seat {
-        _id:Number!
-        id:Number!
-        scree_id:Screen._id!
-        is_booked:Boolean!
-        show_id:Show._id!
-    }
-
+  type Query {
+    getActors: [Actor]
+  }
 `;
