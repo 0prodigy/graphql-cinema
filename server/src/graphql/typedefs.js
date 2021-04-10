@@ -46,6 +46,7 @@ module.exports = gql`
 
   type Query {
     getActors: [Actor]
+    getActor(id: String): Actor
   }
 
   type Mutation {

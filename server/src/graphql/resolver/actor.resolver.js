@@ -10,13 +10,21 @@ module.exports = {
         return new Error("Something went wrong");
       }
     },
+    getActor: async (_, { id }) => {
+      try {
+        return await Actor.findOne({ _id: id }).exec();
+      } catch (err) {
+        return new Error(err);
+      }
+    },
   },
   Mutation: {
     createActor: async (_, { name }) => {
       try {
-        return await new Actor({ name });
+        const actor = await Actor.create({ name });
+        return actor;
       } catch (err) {
-        return UserInputError(err);
+        return new UserInputError(err);
       }
     },
   },

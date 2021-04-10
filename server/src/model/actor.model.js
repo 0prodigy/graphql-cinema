@@ -1,7 +1,12 @@
 const mongoose = require("mongoose");
 
 const ActorSchema = new mongoose.Schema({
-  _id: { type: mongoose.Schema.Types.ObjectId },
+  _id: {
+    type: mongoose.Schema.Types.ObjectId,
+    default: () => {
+      return new mongoose.Types.ObjectId();
+    },
+  },
   name: { type: String },
   movies: { type: mongoose.Schema.Types.ObjectId, ref: "Movie" },
   rating: { type: Number },
