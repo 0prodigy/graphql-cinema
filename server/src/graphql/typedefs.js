@@ -3,7 +3,7 @@ const { gql } = require("apollo-server-express");
 module.exports = gql`
 
     type Movie {
-        _id: ID!
+        _id: Number!
         name: String!
         actor: Actor!
         director:Director!
@@ -11,14 +11,21 @@ module.exports = gql`
     }
 
     type Actor {
-        _id:ID!
+        _id:Number!
         name:String!
-        movies:Movie
+        movies:[Movie]
+        rating:Number
+    }
+
+    type Director {
+        _id:Number!
+        name:String!
+        movies:[Movie]
         rating:Number
     }
 
     type Screen {
-        _id:ID!
+        _id:Number!
         name:String!
         show: [
             Show
@@ -26,18 +33,18 @@ module.exports = gql`
     }
 
     type Show {
-        _id:ID! 
+        _id:Number! 
         time:String
         movie_id:Movie._id
         ticket_price:Number
     }
 
     type Seat {
-        _id:ID!
-        id:Number
-        scree_id:Screen._id
-        is_booked:Boolean
-        show_id:Show._id
+        _id:Number!
+        id:Number!
+        scree_id:Screen._id!
+        is_booked:Boolean!
+        show_id:Show._id!
     }
 
 `;
